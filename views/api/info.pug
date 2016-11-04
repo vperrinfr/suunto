@@ -1,0 +1,55 @@
+extends ../layout_dives
+
+block content
+  style.
+    #curve_chart {
+      width: 600px;
+      height: 400px;
+    }
+    #container input {
+      color: #000;
+    }
+
+  .page-header
+    h2 Dive Information
+
+  .row
+      .col-md-3.col-lg-2.sidebar-offcanvas
+        ul.nav.nav-pills.nav-stacked.list
+
+      .col-md-9.col-lg-10.main
+        .row
+          .col-lg-3.col-md-6
+            .card.card-inverse.card-success
+              .card-block.bg-success
+                h6.text-uppercase
+                  | Dive Time
+                h1.display-dive-time
+                  | 000
+          .col-lg-3.col-md-6
+            .card.card-inverse.card-danger
+              .card-block.bg-danger
+                h6.text-uppercase
+                  | Max Depth
+                h1.display-max-depth
+                  | 000
+          .col-lg-3.col-md-6
+            .card.card-inverse.card-warning
+              .card-block.bg-warning
+                h6.text-uppercase
+                  | Avg Depth
+                h1.display-avg-depth
+                  | 000
+
+          .col-lg-3.col-md-6
+            .card.card-inverse.card-info
+              .card-block.bg-info
+                p(id="container")
+                  span.h6.display-coord
+                    | coord
+                  br
+                  span.h1.club
+                    | Club
+
+        .row
+          #curve_chart

@@ -1,0 +1,21 @@
+.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/')
+        i.fa.fa-cube
+        | Dive Log for Suunto
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li(class=(title == 'Home') ? 'active' : undefined)
+          a(href='/') Home
+        li(class=(title == 'API Examples') ? 'active' : undefined)
+          a(href='/api/info') Dives Information
+        li(class=(title == 'API Examples') ? 'active' : undefined)
+          a(href='/api/google-maps') Dives Location
+        li(class=(title == 'Contact') ? 'active' : undefined)
+          a(href='/api/upload') Import new dive

@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  .page-header
+    h2
+      i.fa.fa-upload
+      | Upload your dive
+
+  .row
+    .col-sm-6
+      p You can import an exported XML from Suunto DM5.
+      form(role='form', enctype='multipart/form-data', method='POST')
+        .form-group
+          label.control-label File Input
+          input(type='file', name='myFile')
+        button.btn.btn-primary(type='submit') Submit
