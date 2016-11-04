@@ -33,6 +33,7 @@ Disclaimer : That development has nothing to do with Suunto.
 - [ ] Exploit additional info from XML file
 - [ ] Add additionnal info like dive description
 - [ ] Social Sharing capabilities
+- [ ] Multiple user accounts
 - [ ] ...
 
 
