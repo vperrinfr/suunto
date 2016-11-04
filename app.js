@@ -18,7 +18,7 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 var Cloudant = require('cloudant');
 var me;
-var password
+var password;
 if(process.env.VCAP_SERVICES)
             {
                 services = JSON.parse(process.env.VCAP_SERVICES);
@@ -33,14 +33,11 @@ if(process.env.VCAP_SERVICES)
                     password = services.cloudantNoSQLDB[0].credentials.password;
                 }
             }
-else {
+else
   {
     me = 'd4765faa-c920-486a-b58b-46b3549edd0f-bluemix'; // Set this to your own account
     password = '7b7660a00d15373e83cacd52e628ef9de665bc995a9080cec7d3174bf8b18036';
   }
-
-
-
 
 const upload = multer({ dest: path.join(__dirname, 'uploads'),fileFilter : function(req, file, callback) { //file filter
                         if (['xml'].indexOf(file.originalname.split('.')[file.originalname.split('.').length-1]) === -1) {
@@ -50,7 +47,7 @@ const upload = multer({ dest: path.join(__dirname, 'uploads'),fileFilter : funct
                     } });
 
 /**
- * Load environment variables from .env file, where API keys and passwords are configured.
+ * Loabd environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.load({ path: '.env.example' });
 
