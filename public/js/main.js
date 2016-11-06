@@ -14,6 +14,7 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".nav-item", function () {
+      $("#curve_chart").show();;
       var val1 = jQuery(this).attr("id");
       var details = JSON.parse(localStorage.getItem("dives"))
       console.log(details);
