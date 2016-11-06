@@ -4,7 +4,7 @@ Suunto Dives Log
 
 Disclaimer : That development has nothing to do with Suunto.
 
-**Live Demo**: soon
+**Live Demo**: https://suunto-diving.mybluemix.net
 
 ## Features
 - Ability to list and display charts (depth & pressure) for each dive.
