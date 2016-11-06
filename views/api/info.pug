@@ -40,16 +40,38 @@ block content
                   | Avg Depth
                 h1.display-avg-depth
                   | 000
-
-          .col-lg-3.col-md-6
-            .card.card-inverse.card-info
-              .card-block.bg-info
-                p(id="container")
-                  span.h6.display-coord
-                    | coord
-                  br
-                  span.h1.club
-                    | Club
-
+        br
         .row
           #curve_chart
+        br
+        .row
+          .panel.panel-default
+            .panel-heading
+              |Informations about the dive
+            .panel-body
+              p(id="container")
+                span.club_id
+                  | Club:
+                span(id='club').club
+                  |  ____
+                br
+                span.dive-site_id
+                  | Dive Site:
+                span(id='dive-site').dive-site
+                  |  ____
+                br
+                span.display-latitude_id
+                  | Latitude:
+                span.display-latitude
+                  |  ____
+                br
+                span.display-longitude_id
+                  | Longitude:
+                span.display-longitude
+                  |  ____
+              
+
+
+
+
+        br

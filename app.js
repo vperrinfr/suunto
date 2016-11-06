@@ -11,7 +11,6 @@ const errorHandler = require('errorhandler');
 const dotenv = require('dotenv');
 const flash = require('express-flash');
 const path = require('path');
-const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
@@ -46,8 +45,28 @@ const upload = multer({ dest: path.join(__dirname, 'uploads'),fileFilter : funct
                         callback(null, true);
                     } });
 
+
+var passport = require('passport'),
+LocalStrategy = require('passport-local').Strategy;
+
+    passport.use(new LocalStrategy(
+      function(username, password, done) {
+        User.findOne({ username: username }, function(err, user) {
+          if (err) { return done(err); }
+            if (!user) {
+              return done(null, false, { message: 'Incorrect username.' });
+            }
+            if (!user.validPassword(password)) {
+              return done(null, false, { message: 'Incorrect password.' });
+            }
+              return done(null, user);
+            });
+        }
+      ));
+
+
 /**
- * Loabd environment variables from .env file, where API keys and passwords are configured.
+ * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.load({ path: '.env.example' });
 
@@ -101,6 +120,13 @@ app.get('/', homeController.index);
 /**
  * API examples routes.
  */
+
+ app.get('/signup', userController.getSignup);
+ app.post('/signup', userController.postSignup);
+
+ app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login', failureFlash: true }));
+
+
 app.get('/api', apiController.getApi);
 app.get('/api/upload', apiController.getFileUpload);
 app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
@@ -130,15 +156,16 @@ app.post('/update/dive', function(req, res) {
   var club = req.body.club;
   var latitude = req.body.latitude;
   var longitude = req.body.longitude;
+  var divesite = req.body.divesite;
     // Update book3
     //console.log("BODY " + JSON.stringify(req.body, null, 2));
     //console.log("ID " + req.body.name );
   suunto.get(name, function(err, response) {
   console.log("REV " + response._rev);
   console.log(JSON.stringify(response, null, 2))
-  response.club = club;
-  response.latitude = latitude;
-  response.longitude = longitude;
+  if (club!="NULL") response.club = club;
+  if (latitude!="NULL") response.latitude = latitude;
+  if (longitude!="NULL") response.longitude = longitude;
   return suunto.insert(response);
   }, function(err, resp) {
   if (err) {
